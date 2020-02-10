@@ -15,45 +15,113 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Committee',
+            name="Committee",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Conference',
+            name="Conference",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('start_date', models.DateField()),
-                ('end_date', models.DateField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("start_date", models.DateField()),
+                ("end_date", models.DateField()),
             ],
         ),
         migrations.CreateModel(
-            name='Paper',
+            name="Paper",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.IntegerField(choices=[(1, 'Position Paper'), (2, 'Working Paper'), (3, 'Presentation Paper')])),
-                ('content', models.TextField()),
-                ('committee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paper_management.Committee')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.IntegerField(
+                        choices=[
+                            (1, "Position Paper"),
+                            (2, "Working Paper"),
+                            (3, "Presentation Paper"),
+                        ]
+                    ),
+                ),
+                ("content", models.TextField()),
+                (
+                    "committee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="paper_management.Committee",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='MunkeyUser',
+            name="MunkeyUser",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('birth_date', models.DateField()),
-                ('address', models.TextField()),
-                ('committee', models.ManyToManyField(null=True, to='paper_management.Committee')),
-                ('conference', models.ManyToManyField(to='paper_management.Conference')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("birth_date", models.DateField()),
+                ("address", models.TextField()),
+                (
+                    "committee",
+                    models.ManyToManyField(null=True, to="paper_management.Committee"),
+                ),
+                (
+                    "conference",
+                    models.ManyToManyField(to="paper_management.Conference"),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='committee',
-            name='conference',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paper_management.Conference'),
+            model_name="committee",
+            name="conference",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="paper_management.Conference",
+            ),
         ),
     ]

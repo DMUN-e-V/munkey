@@ -10,8 +10,8 @@ from paper_management.models import Paper
 
 def index(request):
     paper_list = Paper.objects.all()
-    context = {'paper_list': paper_list}
-    return render(request, 'paper_management/index.html', context)
+    context = {"paper_list": paper_list}
+    return render(request, "paper_management/index.html", context)
 
 
 def paper_detail(request, paper_id):
