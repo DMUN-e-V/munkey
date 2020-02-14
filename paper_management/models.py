@@ -33,8 +33,8 @@ class Committee(models.Model):
 
 class MunkeyUser(models.Model):
     user = OneToOneField(User, on_delete=CASCADE)
-    birth_date = DateField()
-    address = TextField()
+    birth_date = DateField(null=True)
+    address = TextField(null=True)
     conference = ManyToManyField(Conference)
     committee = ManyToManyField(Committee)
 
@@ -69,4 +69,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.munkeyuser.save()
