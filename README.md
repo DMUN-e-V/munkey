@@ -1,3 +1,6 @@
+![Workflow](https://github.com/DMUN-e-V/munkey/workflows/munkey/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/DMUN-e-V/munkey/badge.svg?branch=master)](https://coveralls.io/github/DMUN-e-V/munkey?branch=master)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 # munkey
 ## Introduction
 munkey can be used to manage MUN conferences. It is based on Django and wagtail.

@@ -10,5 +10,9 @@ authors = [
 [tool.poetry.dependencies]
 python = "^3.6"
 Django = "^2.0"
-black = "^19.10b0"
 wagtail = "^2.8"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+coverage = "^5.0.3"
+coveralls = "^1.10.0"
