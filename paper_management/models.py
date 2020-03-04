@@ -12,6 +12,7 @@ from django.db.models import (
 )
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 
 class Conference(models.Model):
@@ -59,6 +60,9 @@ class Paper(models.Model):
 
     def __str__(self):
         return self.user.get_full_name() + self.committee.name
+
+    def get_absolute_url(self):
+        return reverse("paper_management:paper_detail", kwargs={"pk": self.pk})
 
 
 @receiver(post_save, sender=User)

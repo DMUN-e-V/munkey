@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ paper }}"?</p>
+        {% bootstrap_button "Confirm" "submit" "btn-primary"%}
+    </form>
+{% endblock %}

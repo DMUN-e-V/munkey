@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "homepage",
     "paper_management",
+    "bootstrap4",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -110,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
+
+LOGIN_REDIRECT_URL = "/paper"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

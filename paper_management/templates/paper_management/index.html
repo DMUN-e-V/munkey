@@ -1,9 +1,0 @@
-{% if paper_list %}
-    <ul>
-    {% for paper in paper_list %}
-        <li><a href="{% url 'paper_management:paper_detail' paper.id %}">{{ paper }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No papers are available.</p>
-{% endif %}

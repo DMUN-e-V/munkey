@@ -26,14 +26,15 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 
 urlpatterns = [
-    re_path(r"^django-admin/", admin.site.urls),
-    re_path(r"^admin/", include(wagtailadmin_urls)),
-    re_path(r"^documents/", include(wagtaildocs_urls)),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("django-admin/", admin.site.urls),
+    path("admin/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
     # Optional URL for including your own vanilla Django urls/views
-    re_path(r"^pm/", include("paper_management.urls")),
+    path("paper/", include("paper_management.urls")),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
-    re_path(r"", include(wagtail_urls)),
+    path("", include(wagtail_urls)),
 ]
 
 if settings.DEBUG:

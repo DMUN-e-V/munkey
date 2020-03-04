@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <h2>Paper</h2>
+    <b>Author:</b> {{ paper.user }}<br>
+    <b>Committee:</b> {{ paper.committee }}<br>
+    <b>Type:</b> {{ paper.type }}<br>
+    <b>Content:</b><br>{{ paper.content }}<br>
+
+    {% url "paper_management:paper_change" paper.id as change_url %}
+    {% url "paper_management:paper_delete" paper.id as delete_url %}
+    {% url "paper_management:paper_list" as list_url %}
+
+    {% bootstrap_button content="Back to list" href=list_url button_class="btn-default" %}
+    {% if perms.paper_management.change_paper %}
+        {% bootstrap_button content="Edit" href=change_url button_class="btn-default" %}
+    {% endif %}
+    {% if perms.paper_management.delete_paper %}
+        {% bootstrap_button content="Delete" href=delete_url button_class="btn-danger" %}
+    {% endif %}
+{% endblock %}
