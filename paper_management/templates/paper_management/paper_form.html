@@ -2,9 +2,11 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% bootstrap_button "Submit" "submit" "btn-primary" %}
-    </form>
+    <div class="col-lg-12">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button "Submit" "submit" "btn-primary" %}
+        </form>
+    </div>
 {% endblock %}

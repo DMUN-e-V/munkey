@@ -2,7 +2,10 @@
 {% load bootstrap4%}
 
 {% block content %}
-    Logged out succesfully. <br>
-    {% url "login" as login_url %}
-    {% bootstrap_button content="Back to login" href=login_url %}
+    <div class="col-lg-3">
+        Logged out succesfully.
+        <br>
+        {% url "login" as login_url %}
+        {% bootstrap_button content="Back to login" href=login_url %}
+    </div>
 {% endblock %}
