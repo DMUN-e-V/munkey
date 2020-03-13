@@ -1,18 +1,16 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import (
     CharField,
     DateField,
     CASCADE,
     ForeignKey,
-    OneToOneField,
     TextField,
-    ManyToManyField,
     IntegerField,
 )
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.urls import reverse
+
+from munkey import settings
+from user_management.models import UserProfile
 
 
 class Conference(models.Model):
@@ -32,17 +30,6 @@ class Committee(models.Model):
         return self.name
 
 
-class MunkeyUser(models.Model):
-    user = OneToOneField(User, on_delete=CASCADE)
-    birth_date = DateField(null=True)
-    address = TextField(null=True)
-    conference = ManyToManyField(Conference)
-    committee = ManyToManyField(Committee)
-
-    def __str__(self):
-        return self.user.get_full_name()
-
-
 class Paper(models.Model):
     POSITION_PAPER = 1
     WORKING_PAPER = 2
@@ -53,24 +40,17 @@ class Paper(models.Model):
         (PRESENTATION_PAPER, "Presentation Paper"),
     )
 
-    user = ForeignKey(User, on_delete=CASCADE)
+    user = ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=CASCADE, related_name="papers"
+    )
     committee = ForeignKey(Committee, on_delete=CASCADE)
     type = IntegerField(choices=PAPER_TYPES)
     content = TextField()
 
     def __str__(self):
-        return self.user.get_full_name() + self.committee.name
+        return "{}: {} ({})".format(
+            self.get_type_display(), self.user.get_full_name(), self.committee.name
+        )
 
     def get_absolute_url(self):
         return reverse("paper_management:paper_detail", kwargs={"pk": self.pk})
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        MunkeyUser.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.munkeyuser.save()
