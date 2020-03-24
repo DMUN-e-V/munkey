@@ -12,6 +12,8 @@ python = "^3.6"
 Django = "^2.0"
 wagtail = "^2.8"
 django-bootstrap4 = "^1.1.1"
+django-environ = "^0.4.5"
+mysqlclient = "^1.4.6"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"

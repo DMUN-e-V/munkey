@@ -24,7 +24,9 @@ jobs:
         source $HOME/.poetry/env
         $HOME/.poetry/bin/poetry run black --check .
     - name: Test apps
-      run: $HOME/.poetry/bin/poetry run coverage run manage.py test munkey paper_management homepage
+      run: |
+        cp .env.example .env
+        $HOME/.poetry/bin/poetry run coverage run manage.py test munkey paper_management homepage
     - name: Upload coverage
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
