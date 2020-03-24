@@ -48,9 +48,7 @@ class Paper(models.Model):
     content = TextField()
 
     def __str__(self):
-        return "{}: {} ({})".format(
-            self.get_type_display(), self.user.get_full_name(), self.committee.name
-        )
+        return f"{self.get_type_display()}: {self.user.get_full_name()} ({self.committee.name})"
 
     def get_absolute_url(self):
         return reverse("paper_management:paper_detail", kwargs={"pk": self.pk})
