@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "homepage",
     "paper_management",
     "user_management",
+    "navigation",
     "bootstrap4",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -81,6 +82,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "navigation.context_processors.menu",
             ],
         },
     },
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "user_management.UserProfile"
 
-LOGIN_REDIRECT_URL = "/paper"
+LOGIN_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
