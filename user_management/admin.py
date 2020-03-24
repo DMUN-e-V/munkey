@@ -11,8 +11,8 @@ class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
 
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password_validation = forms.CharField(
         label="Password confirmation", widget=forms.PasswordInput
     )
 
@@ -34,18 +34,18 @@ class UserCreationForm(forms.ModelForm):
             "state",
         )
 
-    def clean_password2(self):
+    def clean_password_validation(self):
         # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
+        password = self.cleaned_data.get("password")
+        password_validation = self.cleaned_data.get("password_validation")
+        if password and password_validation and password1 != password_validation:
             raise forms.ValidationError("Passwords don't match")
-        return password2
+        return password_validation
 
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
         return user
@@ -123,8 +123,8 @@ class UserAdmin(BaseUserAdmin):
                 "classes": ("wide",),
                 "fields": (
                     "email",
-                    "password1",
-                    "password2",
+                    "password",
+                    "password_validation",
                     "gender",
                     "food_preference",
                     "first_name",
