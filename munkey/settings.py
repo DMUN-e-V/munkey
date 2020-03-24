@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "homepage",
     "paper_management",
+    "user_management",
     "navigation",
     "bootstrap4",
     "wagtail.contrib.forms",
@@ -113,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
+AUTH_USER_MODEL = "user_management.UserProfile"
 
 LOGIN_REDIRECT_URL = "/"
 
