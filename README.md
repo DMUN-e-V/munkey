@@ -18,4 +18,5 @@ To set up a development version of munkey on your local machine, you need to exe
 
 Before commiting, make sure to lint your changes with `black .` or [IDE integration](https://github.com/psf/black#editor-integration) and to test the code with `python manage.py test`
 
+When encoutering errors while running `python manage.py migrate`, you might need to delete the database (for sqlite simply delete the db.sqlite3 file). You might also need to install mysql, e.g. on macOS with `brew install mysql`
 
