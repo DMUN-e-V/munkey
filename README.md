@@ -11,8 +11,12 @@ To set up a development version of munkey on your local machine, you need to exe
 2. Install poetry (if not already installed): `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python`
 3. Check out repository and cd to it
 4. Install dependencies with `poetry install`
-5. Migrate the database with `python manage.py migrate`
-6. Create a superuser with `python manage.py createsuperuser`
-7. Start the development server with `python manage.py runserver`
+5. Create env file with `cp .env.example .env`
+6. Migrate the database with `python manage.py migrate`
+7. Create a superuser with `python manage.py createsuperuser`
+8. Start the development server with `python manage.py runserver`
 
 Before commiting, make sure to lint your changes with `black .` or [IDE integration](https://github.com/psf/black#editor-integration) and to test the code with `python manage.py test`
+
+When encoutering errors while running `python manage.py migrate`, you might need to delete the database (for sqlite simply delete the db.sqlite3 file). You might also need to install mysql, e.g. on macOS with `brew install mysql`
+It might also be worthwile to checkout the wiki under Deployment!
