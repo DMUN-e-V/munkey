@@ -1,0 +1,6 @@
+{% load bootstrap4 %}
+<form method="post" action="/admin/choose-munkey-link">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% bootstrap_button "Submit" "submit" %}
+</form>
